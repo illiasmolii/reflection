@@ -4,7 +4,7 @@ import java.lang.reflect.Modifier;
 import java.lang.reflect.TypeVariable;
 import java.util.Arrays;
 
-public class Classes {
+public class Main {
 
     public static void main(String[] args) throws Exception {
         String className = args[0];
@@ -16,6 +16,10 @@ public class Classes {
         printImplementedInterfaces(clazz);
         printAnnotations(clazz);
         printInheritancePath(clazz);
+
+        printFields(clazz);
+        printMethods(clazz);
+        printConstructors(clazz);
     }
 
     private static void printClassName(Class<?> clazz) {
@@ -57,5 +61,20 @@ public class Classes {
             printAncestors(superclass);
         }
         System.out.println(clazz.getCanonicalName());
+    }
+
+    private static void printFields(Class clazz) {
+        System.out.println("\nFields:");
+        Arrays.stream(clazz.getDeclaredFields()).forEach(System.out::println);
+    }
+
+    private static void printMethods(Class clazz) {
+        System.out.println("\nMethods:");
+        Arrays.stream(clazz.getDeclaredMethods()).forEach(System.out::println);
+    }
+
+    private static void printConstructors(Class clazz) {
+        System.out.println("\nConstructors:");
+        Arrays.stream(clazz.getDeclaredConstructors()).forEach(System.out::println);
     }
 }
